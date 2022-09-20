@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: co.develhope.CRUDtest.CruDtestApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.559 s - in co.develhope.CRUDtest.CruDtestApplicationTests
