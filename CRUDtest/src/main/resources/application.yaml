@@ -14,3 +14,17 @@ path match:
 matching-strategy: ant_path_matcher
 server:
 port: 8080
+
+---
+environment: test
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: test
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database: h2
+  h2:
+    console:
+      enabled: true

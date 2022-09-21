@@ -19,25 +19,25 @@ public class StudentController {
     @Autowired
     private StudentRepository studentRepository;
 
-    @PostMapping("/create")
-    public Student createStudent(@RequestBody Student student) {
+    @PostMapping()
+    public @ResponseBody Student createStudent(@RequestBody Student student) {
         return studentRepository.save(student);
     }
 
-    @GetMapping("/getAll")
-    public List<Student> getAllStudents() {
+    @GetMapping("/")
+    public @ResponseBody List<Student> getAllStudents() {
         List<Student> students = studentRepository.findAll();
         return students;
     }
 
     @GetMapping("/get/{id}")
-    public Optional<Student> getStudent(@PathVariable Long id) {
+    public @ResponseBody Optional<Student> getStudent(@PathVariable Long id) {
         Optional<Student> studentFromDB = studentRepository.findById(id);
         return studentFromDB;
     }
 
     @PutMapping("/modify/{id}")
-    public Student updateStudent(@PathVariable Long id, @RequestBody Student student) {
+    public @ResponseBody Student updateStudent(@PathVariable Long id, @RequestBody Student student) {
         if (studentRepository.existsById(id)) {
             student.setId(id);
             return studentRepository.saveAndFlush(student);
@@ -48,7 +48,7 @@ public class StudentController {
     }
 
     @PutMapping("/updateStatus/{id}")
-    public Student updateStatus(@PathVariable Long id, @RequestParam int number) {
+    public @ResponseBody Student updateStatus(@PathVariable Long id, @RequestParam int number) {
         if (studentRepository.existsById(id)) {
             Optional<Student> studentFromDB = studentRepository.findById(id);
            boolean isWorkingValue = studentService.switchValue(number);
@@ -61,7 +61,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/deleteStudent")
-    public String deleteStudent(@PathVariable Long id) {
+    public @ResponseBody String deleteStudent(@PathVariable Long id) {
         Optional<Student> studentFromDB = studentRepository.findById(id);
         if (studentFromDB.isEmpty()) {
             return "STUDENT NOT FOUND";
